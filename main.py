@@ -72,7 +72,6 @@ class POW:
         self._arkose_worker_code = f'{code_part1}let {work_config_var_name}=payload;{code_part2}' # replace their received message work_config with ours
         self._code += self._arkose_worker_code
 
-    
     def _fetch_result(self) -> None | Exception:
         try:
             result = run(
