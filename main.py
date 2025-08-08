@@ -66,7 +66,7 @@ class POW:
         self._arkose_worker_code = sub(r'onmessage=async\s+[a-zA-Z]=>', '', self._arkose_worker_code) # we're sending the messages not arkose!!!
         
         work_config_var_name = self._arkose_worker_code.split('const seed=')[1].split('[')[0]
-        code_part1, code_part2 = self._arkose_worker_code.split(f'let {work_config_var_name}=')
+        code_part1, code_part2 = self._arkose_worker_code.rsplit(f'let {work_config_var_name}=', 1)
         code_part2 = code_part2.split(';', 1)[1]
 
         self._arkose_worker_code = f'{code_part1}let {work_config_var_name}=payload;{code_part2}' # replace their received message work_config with ours
